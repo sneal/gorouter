@@ -5,8 +5,6 @@ import (
 	"log/slog"
 	"net/http"
 
-	"github.com/urfave/negroni/v3"
-
 	log "code.cloudfoundry.org/gorouter/logger"
 )
 
@@ -93,7 +91,7 @@ func (m *W3C) ServeUpdatedTraceparent(
 		parentIdHex := fmt.Sprintf("%x", traceparent.ParentID)
 		err = requestInfo.SetTraceInfo(traceIdHex, parentIdHex)
 		if err != nil {
-			logger.Debug("failed-to-set-trace-info-from-generated-vaulue",
+			logger.Debug("failed-to-set-trace-info-from-generated-value",
 				log.ErrAttr(err),
 				slog.String("trace_id", traceIdHex),
 				slog.String("parent_id", parentIdHex))
